@@ -20,10 +20,12 @@ class byphp{
         $this->config = $config;
     }
 
+    /**
+     * 入口方法
+     */
     public function run(){
         spl_autoload_register([$this,'loadClass']);
         $this->setReporting();
-        $this->removeMagicQuotes();
         $this->setConfig();
         $this->route();
     }
@@ -60,6 +62,10 @@ class byphp{
         $controller->$action();
     }
 
+    /**
+     * 自动加载处理类
+     * @param $class
+     */
     public function loadClass($class){
         $classMap = $this->autoloadMap();
         if (isset($classMap[$class])){
@@ -75,6 +81,10 @@ class byphp{
         include_once $file;
     }
 
+    /**
+     * 自动加载基础类映射
+     * @return array
+     */
     private function autoloadMap(){
         return [
             'byphp\base\Controller' => CORE_PATH . '/base/Controller.php',
@@ -93,21 +103,6 @@ class byphp{
             define('DB_PASS',$this->config['db']['password']);
         }
     }
-
-    private function removeMagicQuotes(){
-        if (get_magic_quotes_gpc()){
-            $_GET = isset($_GET) ? $this->stripSlashesDeep($_GET) : '';
-            $_POST = isset($_POST) ? $this->stripSlashesDeep($_POST) : '';
-            $_COOKIE = isset($_POST) ? $this->stripSlashesDeep($_COOKIE) : '';
-            $_SESSION = isset($_SESSION) ? $this->stripSlashesDeep($_SESSION) : '';
-        }
-    }
-
-    private function stripSlashesDeep($value){
-        $value = is_array($value) ? array_map(__METHOD__,$value) : stripslashes($value);
-        return $value;
-    }
-
 
     /**
      * 开发环境检测
