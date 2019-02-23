@@ -17,15 +17,15 @@ class Route {
      */
     public static function dispatch($path) {
         if (empty($path) || '/' == $path) {
-            $controller = 'Index';
-            $method = 'Index';
+            $controller = 'index';
+            $method = 'index';
         } else {
             $maps = explode('/', $path);
             $controller = $maps[1];
             $method = $maps[2];
         }
         $controllerClass = 'controller' . '\\' . $controller;
-        $class = new $controllerClass;
+        $class = new $controllerClass();
         return $class->$method();
     }
 

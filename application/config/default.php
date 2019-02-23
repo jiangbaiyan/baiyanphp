@@ -8,6 +8,6 @@
 
 return [
     'host' => '0.0.0.0',
-    'port' => 9501,
+    'port' => 9999,
     'worker_num' => 1
 ];

@@ -46,7 +46,7 @@ class Family {
         foreach ($findPath as $path) {
             $realPath = $path . $classPath;
             if (is_file($realPath)) {
-                require $realPath;
+                require "{$realPath}";
                 return;
             }
         }
