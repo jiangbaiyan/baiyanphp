@@ -10,7 +10,7 @@ define('APP_PATH' , dirname(__DIR__) . '/');
 
 define('APP_DEBUG',true);
 
-include_once(APP_PATH . 'baiyanphp/byphp.php');
+include_once(APP_PATH . 'framework/byphp.php');
 
 $config = require_once(APP_PATH . 'config/config.php');
 
