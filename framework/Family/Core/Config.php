@@ -8,6 +8,8 @@
 
 namespace Family\Core;
 
+use Family\Family;
+
 class Config {
 
     public static $configMap;
@@ -16,8 +18,8 @@ class Config {
      * 加载配置文件
      */
     public static function load() {
-        $configPath = dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'config';
-        self::$configMap = require $configPath . DIRECTORY_SEPARATOR . 'default.php';
+        $configPath = Family::$applicationPath . DS . 'config';
+        self::$configMap = require $configPath . DS . 'default.php';
     }
 
     /**
